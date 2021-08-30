@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <th:block th:include="~{fragments/head}"></th:block>
+</head>
+
+<body>
+
+<th:block th:include="~{fragments/navbar}"></th:block>
+
+<div class="jumbotron">
+  <div class="container w-75">
+    <h1 class="text-center text-dark">Add Category</h1>
+    <hr class="hr-2 bg-dark">
+    <form id="add-product-form" class="form mx-auto" th:action="@{/category/add}" th:method="post"
+          enctype="multipart/form-data" th:object="${model}">
+
+      <div class="form-group">
+        <label for="add-product-name" class="font-weight-bold">Category type</label>
+        <input required type="text" class="form-control" id="add-product-name"
+               name="categoryType" th:value="*{categoryType}">
+        <small style="color: red"  th:each="error : ${#fields.errors('categoryType')}"
+               th:utext="${error} + '&lt;br /&gt;'"></small>
+      </div>
+
+
+      <hr class="hr-2 bg-dark">
+      <div class="button-holder d-flex justify-content-center">
+        <button type="submit" class="btn btn-success">Add Category</button>
+      </div>
+    </form>
+  </div>
+</div>
+<div>
+  <th:block th:include="~{fragments/footer}"></th:block>
+</div>
+</body>
+
+</html>

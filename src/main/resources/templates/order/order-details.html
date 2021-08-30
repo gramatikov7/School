@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!--<global-method-security secured-annotations="enabled" />-->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+</head>
+
+<body>
+<!-- Nav Bar Start -->
+<th:block th:include="~{fragments/navbar}"></th:block>
+
+<div class="page-header mb-0">
+    <div class="px-4 px-lg-0">
+        <div class="pb-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 p-5 bg-white rounded shadow-sm mb-5">
+
+                        <div class="table-responsive">
+
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col" class="border-0 bg-light">
+                                        <div class="p-2 px-3 text-uppercase">Order</div>
+                                    </th>
+                                    <th scope="col" class="border-0 bg-light">
+                                        <div class="py-2 text-uppercase">Products price</div>
+                                    </th>
+                                    <th scope="col" class="border-0 bg-light">
+                                        <div class="py-2 text-uppercase">Product count</div>
+                                    </th>
+                                    <th scope="col" class="border-0 bg-light">
+                                        <div class="py-2 text-uppercase">Total price for product</div>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody class="order-items">
+
+                                <th:block th:each="a: ${order.items}">
+                                    <tr>
+                                        <td class="border-0 align-middle">
+                                            <strong th:text="${a.products.name}"></strong>
+                                        </td>
+                                        <td class="border-0 align-middle">
+                                            <strong th:text="${#numbers.formatDecimal(a.products.price , 0, 'COMMA', 2, 'POINT')}"></strong>
+                                        </td>
+                                        <td class="border-0 align-middle">
+                                            <strong th:text="${#numbers.formatDecimal(a.totalQuantity, 0, 'COMMA', 0, 'POINT')}"></strong>
+                                        </td>
+                                        <td class="border-0 align-middle">
+                                            <strong th:text="${#numbers.formatDecimal(a.totalPrice, 0, 'COMMA', 2, 'POINT')}"></strong>
+                                        </td>
+                                    </tr>
+                                </th:block>
+
+
+
+                                </tbody>
+                            </table>
+                            <button type="click"
+                                    class="btn btn-dark rounded-pill py-2 btn-block font-weight-bolder"
+                                    th:text="'Total price is ' +${#numbers.formatDecimal(sum, 0, 'COMMA', 2, 'POINT')}">
+                            </button>
+                        </div>
+                        <!-- End -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <th:block th:include="~{fragments/footer}"></th:block>
+
+</div>
+
+</body>
+
+</html>
+
+

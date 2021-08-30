@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+</head>
+
+<body>
+<!-- Nav Bar Start -->
+<th:block th:include="~{fragments/navbar}"></th:block>
+<!-- Nav Bar End -->
+
+<div class="page-header mb-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+            </div>
+            <div class="col-6">
+                <h1 class="text-center text-warning">Register</h1>
+                <hr class="hr-2 bg-white w-25">
+
+                <form th:action="@{/users/register}" th:method="post" th:object="${model}">
+                    <small style="color: red" th:each="error : ${#fields.errors('username')}"
+                           th:utext="${error} + '&lt;br /&gt;'"></small>
+                    <small style="color: red"  th:each="error : ${#fields.errors('firstName')}"
+                           th:utext="${error} + '&lt;br /&gt;'"></small>
+                    <small style="color: red"  th:each="error : ${#fields.errors('lastName')}"
+                    th:utext="${error} + '&lt;br /&gt;'"></small>
+                    <small style="color: red"  th:each="error : ${#fields.errors('password')}"
+                           th:utext="${error} + '&lt;br /&gt;'"></small>
+                    <small style="color: red"  th:each="error : ${#fields.errors('email')}"
+                           th:utext="${error} + '&lt;br /&gt;'"></small>
+                    <div class="control-group">
+                        <div class="input-group" th:classappend="${#fields.hasErrors('username')}? 'text-danger'">
+                            <input required type="text" class="form-control" id="username"
+                                   placeholder="Username..." name="username" th:field="*{username}">
+                            <div class="input-group-append">
+                                <div class="input-group-text"><i class="far fa-user"></i></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="control-group">
+                        <div class="input-group" th:classappend="${#fields.hasErrors('firstName')}? 'text-danger'">
+                            <input required type="text" class="form-control" id="firstName"
+                                   placeholder="First Name..." name="firstName" th:field="*{firstName}">
+                            <div class="input-group-append">
+                                <div class="input-group-text"><i class="fas fa-user"></i></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="control-group">
+                        <div class="input-group" th:classappend="${#fields.hasErrors('lastName')}? 'text-danger'">
+                            <input required type="text" class="form-control" id="lastName"
+                                   placeholder="Last Name..." name="lastName" th:field="*{lastName}">
+                            <div class="input-group-append">
+                                <div class="input-group-text"><i class="fas fa-user"></i></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="control-group">
+                        <div class="input-group" th:classappend="${#fields.hasErrors('password')}? 'text-danger'">
+                            <input required type="password" class="form-control" id="password"
+                                   placeholder="Password..." name="password" th:field="*{password}">
+                            <div class="input-group-append">
+                                <div class="input-group-text"><i class="fas fa-key"></i></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="control-group">
+                        <div class="input-group"
+                             th:classappend="${#fields.hasErrors('confirmPassword')}? 'text-danger'">
+                            <input required type="password" class="form-control" id="confirmPassword"
+                                   placeholder="Confirm Password..." name="confirmPassword"
+                                   th:field="*{confirmPassword}">
+                            <div class="input-group-append">
+                                <div class="input-group-text"><i class="fas fa-key"></i></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="control-group">
+                        <div class="input-group" th:classappend="${#fields.hasErrors('email')}? 'text-danger'">
+                            <input required type="email" class="form-control" id="email"
+                                   placeholder="Email..." name="email" th:field="*{email}">
+                            <div class="input-group-append">
+                                <div class="input-group-text"><i class="far fa-envelope"></i></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <hr class="hr-2 bg-dark">
+                    <div class="button-holder d-flex justify-content-center">
+                        <button type="submit" class="btn btn-dark">Register</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <th:block th:include="~{fragments/footer}"></th:block>
+</div>
+</body>
+</html>

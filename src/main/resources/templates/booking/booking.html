@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+</head>
+
+    <body>
+        <!-- Nav Bar Start -->
+        <th:block th:include="~{fragments/navbar}"></th:block>
+        <!-- Nav Bar End -->
+        
+        
+        <!-- Page Header Start -->
+        <div class="page-header mb-0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2>Book A Table</h2>
+                    </div>
+                    <div class="col-12">
+                        <a href="/">Home</a>
+                        <a href="/products/all">Menu</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page Header End -->
+        
+
+        <!-- Booking Start -->
+        <div class="booking">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-7">
+                        <div class="booking-content">
+                            <div class="section-header">
+                                <p>Book A Table</p>
+                                <h2>Book Your Table For Private Dinners & Happy Hours</h2>
+                            </div>
+                            <div class="about-text">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="booking-form">
+
+
+                            <form th:object="${model}" th:action="@{/booking/add}" th:method="post">
+                                <small style="color: red" th:each="error : ${#fields.errors('name')}" th:utext="${error}  + '&lt;br /&gt;'"></small>
+                                <small style="color: red" th:each="error : ${#fields.errors('email')}" th:utext="${error}  + '&lt;br /&gt;'"></small>
+                                <small style="color: red" th:each="error : ${#fields.errors('mobile')}" th:utext="${error}  + '&lt;br /&gt;'"></small>
+                                <small style="color: red" th:each="error : ${#fields.errors('date')}" th:utext="${error}  + '&lt;br /&gt;'"></small>
+                                <small style="color: red" th:each="error : ${#fields.errors('guests')}" th:utext="${error} + '&lt;br /&gt;'"></small>
+                                <small style="color: red" th:each="error : ${#fields.errors('time')}" th:utext="${error}  + '&lt;br /&gt;'"></small>
+
+                                <!--                                <input type="hidden" name="productId" th:value="${products.id}">-->
+                                <div class="control-group">
+                                    <div class="input-group">
+                                        <input type="text" th:classappend="${#fields.hasErrors('name')}? 'text-danger'" class="form-control" name="name" placeholder="Name" required="required" />
+                                        <div class="input-group-append">
+                                            <div class="input-group-text"><i class="far fa-user"></i></div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="input-group">
+                                        <input type="email" class="form-control" name="email" th:classappend="${#fields.hasErrors('email')}? 'text-danger'" placeholder="Email" required="required" />
+                                        <div class="input-group-append">
+                                            <div class="input-group-text"><i class="far fa-envelope"></i></div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="mobile" th:classappend="${#fields.hasErrors('mobile')}? 'text-danger'" placeholder="Mobile" required="required" />
+                                        <div class="input-group-append">
+                                            <div class="input-group-text"><i class="fa fa-mobile-alt"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="input-group date" id="date" th:classappend="${#fields.hasErrors('date')}? 'text-danger'" data-target-input="nearest">
+                                        <input type="text" class="form-control datetimepicker-input" name="date" placeholder="Date" data-target="#date" data-toggle="datetimepicker"/>
+                                        <div class="input-group-append" data-target="#date" data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="far fa-calendar-alt"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="input-group time" id="time" th:classappend="${#fields.hasErrors('time')}? 'text-danger'" data-target-input="nearest">
+                                        <input type="text" class="form-control datetimepicker-input" name="time" placeholder="Time" data-target="#time" data-toggle="datetimepicker"/>
+                                        <div class="input-group-append" data-target="#time" data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="far fa-clock"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <div class="input-group" th:classappend="${#fields.hasErrors('guests')}? 'text-danger'">
+                                        <select class="custom-select form-control" name="guests" style="background:#FBAF32">
+                                            <option value="1">1 Guest</option>
+                                            <option value="2">2 Guest</option>
+                                            <option value="3">3 Guest</option>
+                                            <option value="4">4 Guest</option>
+                                            <option value="5">5 Guest</option>
+                                            <option value="6">6 Guest</option>
+                                            <option value="7">7 Guest</option>
+                                            <option value="8">8 Guest</option>
+                                            <option value="9">9 Guest</option>
+                                            <option value="10">10 Guest</option>
+                                        </select>
+                                        <div class="input-group-append">
+                                            <div class="input-group-text"><i class="fa fa-chevron-down"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button class="btn custom-btn" type="submit">Book Now</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Booking End -->
+
+
+        <!-- Footer Start -->
+        <th:block th:include="~{fragments/footer}"></th:block>
+        <!-- Footer End -->
+
+
+
+    </body>
+</html>

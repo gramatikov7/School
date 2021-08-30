@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+</head>
+
+<body>
+
+<th:block th:include="~{fragments/navbar}"></th:block>
+
+<div class="page-header mb-0" style="background: wheat">
+    <div class="container">
+        <div class="row" >
+            <div class="col-md-4" th:each="p: ${products}">
+                    <div class="page-inner">
+                        <div class="row">
+                            <div class="el-wrapper">
+                                <div class="box-up">
+                                    <div class="category-menu">
+                                        <div class="box-up">
+                                            <a th:href="@{/products/details/{id}(id=${p.id})}">
+                                                <img class="img img-fluid" th:src="${p.imageUrl}" alt=""
+                                                     style="max-width: 250px; max-height: 200px;">
+                                            </a>
+                                            <div class="img-info">
+<!--                                                <figcaption>-->
+                                                    <h4 class="tm-gallery-title" th:text="${p.name}">Sed varius
+                                                        turpis</h4>
+                                                    <p class="tm-gallery-description" th:text="${p.description}">Nam
+                                                        in
+                                                        suscipit nisi, sit amet consectetur metus. Ut sit amet
+                                                        tellus
+                                                        accumsan</p>
+                                                    <p class="tm-gallery-price" th:text="${p.price}">$30.50</p>
+<!--                                                </figcaption>-->
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="box-down">
+                                        <div class="h-bg">
+                                            <div class="h-bg-inner"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<th:block th:include="~{fragments/footer}"></th:block>
+
+<script src="/js/products.js"></script>
+
+</body>
+</html>

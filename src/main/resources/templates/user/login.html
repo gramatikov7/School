@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+</head>
+
+<body>
+
+<th:block th:include="~{fragments/navbar}"></th:block>
+
+<div class="page-header mb-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-7">
+                <h2>Welcome back</h2>
+            </div>
+            <div class="col-5">
+                <form th:action="@{/users/login}" th:method="post">
+                    <div class="control-group">
+                        <div class="input-group">
+                            <input id="inputUsername" class="form-control" placeholder="Username" name="username"
+                                   required autofocus>
+                            <div class="input-group-append">
+                                <div class="input-group-text"><i class="far fa-user"></i></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    </br>
+
+                    <div class="control-group">
+                        <div class="input-group">
+                            <input required type="password" class="form-control" id="password"
+                                   placeholder="Password..." name="password">
+                            <div class="input-group-append">
+                                <div class="input-group-text"><i class="fas fa-key"></i></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    </br>
+
+                    <th:block th:if="${param.error}">
+                        <div class="text-center">
+                            <p style="color: red">Incorrect Username or Password</p>
+                        </div>
+                    </th:block>
+
+
+                    <button class="btn btn-lg btn-dark btn-block btn-login text-uppercase font-weight-bold mb-2"
+                            type="submit"> Login
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div>
+    <th:block th:include="~{fragments/footer}"></th:block>
+</div>
+</body>
+</html>

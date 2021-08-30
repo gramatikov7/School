@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!--<global-method-security secured-annotations="enabled" />-->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+</head>
+
+<body>
+<!-- Nav Bar Start -->
+<th:block th:include="~{fragments/navbar}"></th:block>
+
+<!-- Nav Bar End -->
+
+
+<!-- Carousel Start -->
+<div class="carousel">
+    <div class="container-fluid">
+        <div class="owl-carousel">
+            <div class="carousel-item">
+                <div class="carousel-img">
+                    <img src="img/carousel-1.jpg" alt="Image">
+                </div>
+                <div class="carousel-text">
+                    <h1>Best <span>Quality</span> Ingredients</h1>
+                    <div class="carousel-btn">
+                        <a class="btn custom-btn" th:href="@{/menu/all}">View Menu</a>
+                        <a class="btn custom-btn" th:href="@{/booking/new}">Book Table</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="carousel-img">
+                    <img src="img/carousel-2.jpg" alt="Image">
+                </div>
+                <div class="carousel-text">
+                    <h1>World’s <span>Best</span> Chef</h1>
+                    <div class="carousel-btn">
+                        <a class="btn custom-btn" th:href="@{/menu/all}">View Menu</a>
+                        <a class="btn custom-btn" th:href="@{/booking/new}">Book Table</a>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="carousel-img">
+                    <img src="img/carousel-3.jpg" alt="Image">
+                </div>
+                <div class="carousel-text">
+                    <h1>Fastest Order <span>Delivery</span></h1>
+                    <div class="carousel-btn">
+                    <a class="btn custom-btn" th:href="@{/menu/all}">View Menu</a>
+                    <a class="btn custom-btn" th:href="@{/booking/new}">Book Table</a>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Carousel End -->
+<th:block th:include="~{fragments/footer}"></th:block>
+
+</body>
+</html>

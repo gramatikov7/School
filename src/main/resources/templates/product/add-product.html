@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+</head>
+
+<body>
+
+    <th:block th:include="~{fragments/navbar}"></th:block>
+
+    <div class="jumbotron">
+        <div class="container w-75">
+            <h1 class="text-center text-dark">Add Product</h1>
+            <hr class="hr-2 bg-dark">
+            <form id="add-product-form" class="form mx-auto" th:action="@{/products/add}" th:method="post"
+                  enctype="multipart/form-data" th:object="${model}">
+                <input type="hidden" name="_csrf"
+                       value="c686cd14-a7f9-4216-8009-c093b7d3df86">
+
+                <small style="color: red" th:each="error : ${#fields.errors('name')}"
+                       th:utext="${error} + '&lt;br /&gt;'"></small>
+                <small style="color: red"  th:each="error : ${#fields.errors('price')}"
+                       th:utext="${error} + '&lt;br /&gt;'"></small>
+                <small style="color: red"  th:each="error : ${#fields.errors('quantity')}"
+                       th:utext="${error} + '&lt;br /&gt;'"></small>
+                <small style="color: red"  th:each="error : ${#fields.errors('description')}"
+                       th:utext="${error} + '&lt;br /&gt;'"></small>
+                <small style="color: red"  th:each="error : ${#fields.errors('category')}"
+                       th:utext="${error} + '&lt;br /&gt;'"></small>
+
+                <div class="form-group">
+                    <label for="add-product-name" class="font-weight-bold">Name</label>
+                    <input required type="text" class="form-control" id="add-product-name"
+                           name="name" th:value="*{name}">
+                    <small></small>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="add-product-price" class="font-weight-bold">Price</label>
+                    <input required type="number" step="any" class="form-control" id="add-product-price"
+                           name="price" th:value="*{price}">
+                    <small></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="add-product-quantity" class="font-weight-bold">Quantity</label>
+                    <input required type="number" step="any" class="form-control" id="add-product-quantity"
+                           name="quantity" th:value="*{quantity}">
+                    <small></small>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="add-product-description" class="font-weight-bold">Description</label>
+                    <textarea required name="description" id="add-product-description"
+                              class="form-control" rows="5" th:value="*{description}"></textarea>
+                    <small></small>
+                </div>
+
+                <div class="form-group">
+                    <label for="category-menu-add" class="font-weight-bold"></label>
+                    <select multiple="" class="form-control" name="category" id="category-menu-add" required="required">
+                        <option selected="" disabled="" th:value="category">--- Please Select Category ---</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="add-product-image" class="font-weight-bold">Images</label>
+                    <input required type="file" class="form-control-file" id="add-product-image"
+                           name="image" th:field="*{image}">
+                    <small></small>
+                </div>
+
+                <hr class="hr-2 bg-dark">
+                <div class="button-holder d-flex justify-content-center">
+                    <button type="submit" class="btn btn-success">Add Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+<div>
+    <th:block th:include="~{fragments/footer}"></th:block>
+</div>
+</body>
+
+<script>
+
+    const categoryUrl = '/category/fetch';
+
+    fetch(categoryUrl)
+        .then((response) => response.json())
+        .then((json) => {
+            json.forEach((category) => $('#category-menu-add')
+                .append(`<option value="${category.categoryType}">${category.categoryType}</option>`));
+        })
+        .catch((err) => console.log(err));
+</script>
+
+</html>
