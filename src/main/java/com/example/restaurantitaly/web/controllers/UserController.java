@@ -1,5 +1,6 @@
 package com.example.restaurantitaly.web.controllers;
 
+import com.example.restaurantitaly.domain.models.binding.UserLoginModel;
 import com.example.restaurantitaly.domain.models.binding.UserRegisterModel;
 import com.example.restaurantitaly.domain.models.service.UserRegisterServiceModel;
 import com.example.restaurantitaly.services.UserService;
@@ -32,7 +33,7 @@ public class UserController extends BaseController {
 
     @GetMapping("/register")
     @PreAuthorize("isAnonymous()")
-    public ModelAndView register(@ModelAttribute(name = "model") UserRegisterModel userRegisterModel ){
+    public ModelAndView register(@ModelAttribute(name = "model") UserRegisterModel userRegisterModel) {
 
 
         return view("user/register");
@@ -41,51 +42,34 @@ public class UserController extends BaseController {
 
     @PostMapping("/register")
     @PreAuthorize("isAnonymous()")
-    public ModelAndView registerUser(@ModelAttribute(name = "model") UserRegisterModel userRegisterModel ,
+    public ModelAndView registerUser(@ModelAttribute(name = "model") UserRegisterModel userRegisterModel,
                                      BindingResult bindingResult) {
 
-//        if(!userServiceModelValidation.isValidRegisterUser(modelMapper.map(userRegisterModel , UserRegisterServiceModel.class))){
-//            return view("user/register");
-//        }
 
-        validator.validate(userRegisterModel , bindingResult);
+        validator.validate(userRegisterModel, bindingResult);
 
-//        if (!userRegisterModel.getPassword().equals(userRegisterModel.getConfirmPassword())) {
-//
-//            return view("user/register");
-//
-//        }
 
-        if (bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
 
             return view("user/register");
         }
 
-        if(userService.checkIfUserAlreadyExist(userRegisterModel.getUsername() , userRegisterModel.getEmail())){
-
-            return view("user/register");
-        }
 
         this.userService.register(this.modelMapper.map(userRegisterModel, UserRegisterServiceModel.class));
 
 
-            return redirect("/users/login");
-
-
-
+        return redirect("/users/login");
 
 
     }
 
     @GetMapping("/login")
     @PreAuthorize("isAnonymous()")
-    public ModelAndView login(){
+    public ModelAndView login() {
 
 
         return view("user/login");
     }
-
-
 
 
 
