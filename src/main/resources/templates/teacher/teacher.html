@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+</head>
+
+<body>
+<!-- Nav Bar Start -->
+<th:block th:include="~{fragments/navbar}"></th:block>
+<!-- Nav Bar End -->
+
+
+<!-- Page Header Start -->
+<div class="page-header mb-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2>Teachers</h2>
+            </div>
+            <div class="col-12">
+                <a href="/">Home</a>
+                <a href="/teachers/teachers">Teacher</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+
+
+<!-- Booking Start -->
+<div class="booking">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-7">
+                <div class="booking-content">
+
+                    <form th:object="${teacher}" th:action="@{/teachers/group}" th:method="post">
+                        <div class="section-header">
+
+
+                            <div class="form-group">
+                                <h4 id="teachers-count"></h4>
+                                <label for="all-teachers" class="font-weight-bold"></label>
+                                <select multiple="" class="form-control" name="email" id="all-teachers"
+                                        required="required">
+                                    <option selected="" disabled="" th:value="email">--- All Teachers ---
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="about-text">
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+            <div class="col-lg-5">
+                <div class="booking-form">
+
+                    <form th:object="${teacher}" th:action="@{/teachers/add}" th:method="post">
+                        <div class="control-group">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="firstName" placeholder="First name"
+                                       required="required"/>
+                                <div class="input-group-append">
+                                    <div class="input-group-text"><i class="far fa-user"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="secondName" placeholder="Second name"
+                                       required="required"/>
+                                <div class="input-group-append">
+                                    <div class="input-group-text"><i class="far fa-user"></i></div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="input-group">
+                                <input type="email" class="form-control" name="email" placeholder="Email"
+                                       required="required"/>
+                                <div class="input-group-append">
+                                    <div class="input-group-text"><i class="far fa-envelope"></i></div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="age" placeholder="Age"
+                                       required="required"/>
+                                <div class="input-group-append">
+                                    <div class="input-group-text"><i class="fa fa-mobile-alt"></i></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <button class="btn custom-btn" type="submit">Add Teacher</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+
+<script>
+
+    const teachersUrl = '/teachers/all'
+    const teacherCountUrl = '/teachers/count'
+
+    fetch(teachersUrl)
+        .then((response) => response.json())
+        .then((json) => {
+            json.forEach((teacher) => $('#all-teachers')
+                .append(`<option value="${teacher.email}">${teacher.firstName} ${teacher.secondName}  - ${teacher.email}</option>`));
+        })
+        .catch((err) => console.log(err));
+
+    fetch(teacherCountUrl)
+        .then((response) => response.json())
+        .then((json) => $('#teachers-count')
+            .append(`<h5> All teachers are ${json}</h5>`))
+        .catch((err) => console.log(err));
+
+
+</script>
+</html>

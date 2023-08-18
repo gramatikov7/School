@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<!--<global-method-security secured-annotations="enabled" />-->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+</head>
+
+<body>
+<!-- Nav Bar Start -->
+<th:block th:include="~{fragments/navbar}"></th:block>
+
+<div class="page-header mb-0">
+    <div class="px-4 px-lg-0">
+        <div class="pb-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 p-5 bg-white rounded shadow-sm mb-5">
+                        <div class="col-12">
+                        </div>
+                        <!-- Shopping cart table -->
+                        <div class="table-responsive">
+                            <form th:action="@{/students/checkout}" th:object="${courses}" th:method="post" >
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+
+                                    </tr>
+                                    </thead>
+
+                                    <tbody class="order-items" th:object="${courses}">
+                                    <th:block th:each="s: ${courses}">
+
+                                                <select class="custom-select form-control" name="courseType" style="background:#FBAF32">
+                                                    <option value="MAIN">MAIN</option>
+                                                    <option value="SECONDARY">SECONDARY</option>
+                                                </select>
+
+                                        <h5>Student age</h5>
+
+                                        <input type="number" id="myNumber" name="age"
+                                               value="">
+                                        <td class="border-0 align-middle">
+                                            <br><br>
+                                            <div class="button-holder">
+                                                <a
+                                                        class="btn btn-danger">Search by selected course and student
+                                                    older than this age</a>
+                                            </div>
+                                        </td>
+
+                                    </th:block>
+
+
+                                    </th:block>
+                                    </tbody>
+                                </table>
+
+                            </form>
+
+                        </div>
+
+                        <table class="table" th:object="${students}">
+                            <th:block th:each="s: ${students}">
+                                <thead>
+                                <tr>
+                                    <td class="border-0 align-middle">
+                                        <a style="color: #EF3159" name="course" th:text="${s.firstName}" ></a>
+                                    </td>
+                                    <td class="border-0 align-middle">
+                                        <a style="color: #EF3159" name="course" th:text="${s.secondName}" ></a>
+                                    </td>
+                                    <td class="border-0 align-middle">
+                                        <a style="color: #EF3159" name="course" th:text="${s.age}" ></a>
+                                    </td>
+
+                                    <td class="border-0 align-middle">
+                                        <a style="color: #EF3159" name="course" th:text="${s.email}" ></a>
+                                    </td>
+                                </tr>
+                                <a class="btn btn-danger" href="/groups/query" >Back</a>
+                                </thead>
+                            </th:block>
+                        </table>
+                        <!-- End -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <th:block th:include="~{fragments/footer}"></th:block>
+
+</div>
+
+</body>
+
+<script>
+
+
+</script>
+
+</html>
+
+

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<!--<global-method-security secured-annotations="enabled" />-->
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+    <th:block th:include="~{fragments/head}"></th:block>
+</head>
+
+<body>
+<!-- Nav Bar Start -->
+<th:block th:include="~{fragments/navbar}"></th:block>
+
+<div class="page-header mb-0">
+    <div class="px-4 px-lg-0">
+        <div class="pb-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 p-5 bg-white rounded shadow-sm mb-5">
+                        <div class="col-12">
+                        </div>
+                        <!-- Shopping cart table -->
+                        <div class="table-responsive">
+                            <form th:action="@{/students/checkout}" th:object="${courses}" th:method="post" >
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col" class="border-0 bg-light">
+                                            <div class="p-2 px-3 text-uppercase">Group name</div>
+                                        </th>
+                                        <th scope="col" class="border-0 bg-light">
+                                            <div class="py-2 text-uppercase">Teacher first name</div>
+                                        </th>
+                                        <th scope="col" class="border-0 bg-light">
+                                            <div class="py-2 text-uppercase">Teacher Email</div>
+                                        </th>
+                                        <th scope="col" class="border-0 bg-light">
+                                            <div class="py-2 text-uppercase">Students</div>
+                                        </th>
+
+                                    </tr>
+                                    </thead>
+
+                                    <tbody class="order-items" th:object="${courses}">
+                                    <th:block th:each="s: ${courses}">
+
+                                        <tr>
+                                            <td class="border-0 align-middle">
+                                                <a style="color: #a9fd00" name="name"  th:text="${s.courseType}"></a>
+                                            </td>
+
+<!--                                            <td>-->
+<!--                                                <a class="btn btn-primary" th:if="${user.role} == 'ADMIN'">Update</a>-->
+<!--                                                <a class="btn btn-danger" th:if="${user.role} == 'ADMIN'">Delete</a>-->
+<!--                                                <a class="btn btn-primary" th:unless="${user.role} == 'ADMIN'">View</a>-->
+<!--                                            </td>-->
+<!--                                            -->
+                                            <td class="border-0 align-middle">
+
+                                                <a style="color: #a9fd00" name="firstName" th:if="${s.teacher} != null"  th:text="${s.teacher.firstName}"></a>
+                                                <a style="color: #a9fd00" name="firstName" th:unless="${s.teacher} != null" >No teacher</a>
+                                            </td>
+
+
+                                            <td class="border-0 align-middle">
+                                                <a style="color: #a9fd00" name="email" th:if="${s.teacher} != null" th:text="${s.teacher.email}" ></a>
+                                                <a style="color: #a9fd00" name="firstName" th:unless="${s.teacher} != null" >No teacher</a>
+                                            </td>
+
+                                            <td class="border-0 align-middle">
+                                                <a style="color: #a9fd00" name="totalQuantity" th:text="${s.students.size}"></a>
+                                            </td>
+
+                                            <!--                                            <td class="border-0 align-middle">-->
+                                            <!--                                                <a style="color: #a9fd00" name="totalQuantity" th:text="${s.stu.size}" ></a>-->
+                                            <!--                                            </td>-->
+                                            <!--&lt;!&ndash;                                            <td class="border-0 align-middle">&ndash;&gt;-->
+                                            <!--&lt;!&ndash;                                                <a style="color: #a9fd00" name="totalPrice"&ndash;&gt;-->
+                                            <!--&lt;!&ndash;                                                        th:text="${#numbers.formatDecimal(p.totalPrice, 0, 'COMMA', 2, 'POINT')}"></a>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;                                            </td>&ndash;&gt;-->
+
+
+                                            <td class="border-0 align-middle">
+                                                <div class="button-holder">
+                                                    <a th:href="@{/courses/remove/{id}(id=${s.id})}"
+                                                       class="btn btn-danger">Remove</a>
+                                                </div>
+                                            </td>
+                                            <td class="border-0 align-middle">
+                                                <div class="button-holder">
+                                                    <a th:href="@{/courses/allStudents/{id}(id=${s.id})}"
+                                                       class="btn btn-danger">View Students</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </th:block>
+
+
+                                    </th:block>
+                                    </tbody>
+                                </table>
+                                <!--                                <button type="submit"-->
+                                <!--                                        class="btn btn-dark rounded-pill py-2 btn-block font-weight-bolder" id="checkout"> Checkout-->
+                                <!--                                </button>-->
+                            </form>
+
+                        </div>
+
+                        <table class="table" th:object="${students}">
+                            <th:block th:each="s: ${students}">
+                                <thead>
+                                <tr>
+                                    <td class="border-0 align-middle">
+                                        <a style="color: #EF3159" name="course" th:text="${s.firstName}" ></a>
+                                    </td>
+                                    <td class="border-0 align-middle">
+                                        <a style="color: #EF3159" name="course" th:text="${s.secondName}" ></a>
+                                    </td>
+                                    <td class="border-0 align-middle">
+                                        <a style="color: #EF3159" name="course" th:text="${s.age}" ></a>
+                                    </td>
+
+                                    <td class="border-0 align-middle">
+                                        <a style="color: #EF3159" name="course" th:text="${s.email}" ></a>
+                                    </td>
+                                </tr>
+                                <a class="btn btn-danger" href="/groups/query" >Back</a>
+                                </thead>
+                            </th:block>
+                        </table>
+                        <!-- End -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <th:block th:include="~{fragments/footer}"></th:block>
+
+</div>
+
+</body>
+
+<script>
+
+
+</script>
+
+</html>
+
+
