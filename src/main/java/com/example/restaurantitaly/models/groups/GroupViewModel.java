@@ -1,4 +1,4 @@
-package com.example.restaurantitaly.models;
+package com.example.restaurantitaly.models.groups;
 
 import com.example.restaurantitaly.entities.Student;
 import com.example.restaurantitaly.entities.Teacher;
@@ -10,7 +10,6 @@ public class GroupViewModel {
     private String name;
     private Teacher teacher;
     private Set<Student> student;
-    private int participants;
 
     public Long getId() {
         return id;
@@ -44,11 +43,4 @@ public class GroupViewModel {
         this.student = student;
     }
 
-    public int getParticipants() {
-        return participants;
-    }
-
-    public void setParticipants(int participants) {
-        this.participants = participants;
-    }
 }

@@ -1,4 +1,4 @@
-package com.example.restaurantitaly.models;
+package com.example.restaurantitaly.models.courses;
 
 import com.example.restaurantitaly.util.CourseType;
 

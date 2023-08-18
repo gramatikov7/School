@@ -2,9 +2,9 @@ package com.example.restaurantitaly.services;
 
 import com.example.restaurantitaly.entities.Course;
 import com.example.restaurantitaly.entities.Group;
-import com.example.restaurantitaly.entities.Student;
-import com.example.restaurantitaly.models.StudentModel;
-import com.example.restaurantitaly.models.StudentsViewModel;
+import com.example.restaurantitaly.models.courses.CourseSearchModel;
+import com.example.restaurantitaly.models.students.StudentModel;
+import com.example.restaurantitaly.models.students.StudentsViewModel;
 
 import java.util.List;
 
@@ -33,4 +33,7 @@ public interface StudentService {
     List<StudentModel> findAllStudentsByCourse(Course courseById);
 
     List<StudentModel> findAllStudentsByGroup(Group courseById);
+
+    List<StudentsViewModel> getStudentByCourseAndAge(Course courseById, int age);
+
 }

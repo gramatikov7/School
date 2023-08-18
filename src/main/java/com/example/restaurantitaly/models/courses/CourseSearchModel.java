@@ -1,8 +1,7 @@
-package com.example.restaurantitaly.models;
+package com.example.restaurantitaly.models.courses;
 
-public class StudentBindingModel {
+public class CourseSearchModel {
     private Long id;
-    private String course;
     private int age;
 
     public Long getId() {
@@ -11,14 +10,6 @@ public class StudentBindingModel {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getCourse() {
-        return course;
-    }
-
-    public void setCourse(String course) {
-        this.course = course;
     }
 
     public int getAge() {

@@ -72,15 +72,6 @@
                                                 <a style="color: #a9fd00" name="totalQuantity" th:text="${s.students.size}"></a>
                                             </td>
 
-                                            <!--                                            <td class="border-0 align-middle">-->
-                                            <!--                                                <a style="color: #a9fd00" name="totalQuantity" th:text="${s.stu.size}" ></a>-->
-                                            <!--                                            </td>-->
-                                            <!--&lt;!&ndash;                                            <td class="border-0 align-middle">&ndash;&gt;-->
-                                            <!--&lt;!&ndash;                                                <a style="color: #a9fd00" name="totalPrice"&ndash;&gt;-->
-                                            <!--&lt;!&ndash;                                                        th:text="${#numbers.formatDecimal(p.totalPrice, 0, 'COMMA', 2, 'POINT')}"></a>&ndash;&gt;-->
-                                            <!--&lt;!&ndash;                                            </td>&ndash;&gt;-->
-
-
                                             <td class="border-0 align-middle">
                                                 <div class="button-holder">
                                                     <a th:href="@{/courses/remove/{id}(id=${s.id})}"
@@ -125,7 +116,7 @@
                                         <a style="color: #EF3159" name="course" th:text="${s.email}" ></a>
                                     </td>
                                 </tr>
-                                <a class="btn btn-danger" href="/groups/query" >Back</a>
+                                <a class="btn btn-danger" href="/courses/query" >Back</a>
                                 </thead>
                             </th:block>
                         </table>

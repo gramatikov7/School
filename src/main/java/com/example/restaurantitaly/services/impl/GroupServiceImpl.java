@@ -1,20 +1,24 @@
 package com.example.restaurantitaly.services.impl;
 
-import com.example.restaurantitaly.entities.Course;
 import com.example.restaurantitaly.entities.Group;
 import com.example.restaurantitaly.entities.Student;
 import com.example.restaurantitaly.entities.Teacher;
-import com.example.restaurantitaly.models.*;
+import com.example.restaurantitaly.models.groups.GroupModel;
+import com.example.restaurantitaly.models.groups.GroupServiceModel;
+import com.example.restaurantitaly.models.groups.GroupViewModel;
+import com.example.restaurantitaly.models.groups.GruopBindingModel;
+import com.example.restaurantitaly.models.students.StudentModel;
+import com.example.restaurantitaly.models.teachers.TeacherModel;
+import com.example.restaurantitaly.models.teachers.TeacherServiceModel;
+import com.example.restaurantitaly.models.teachers.TeacherViewModel;
 import com.example.restaurantitaly.repositories.GroupRepository;
 import com.example.restaurantitaly.services.GroupService;
 import com.example.restaurantitaly.services.StudentService;
 import com.example.restaurantitaly.services.TeacherService;
 import org.modelmapper.ModelMapper;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -134,6 +138,16 @@ public class GroupServiceImpl implements GroupService {
     @Override
     public Group getGroupById(Long id) {
        return groupRepository.findById(id).get();
+
+    }
+
+    @Override
+    public List<GroupModel> findGroupByTeacher(TeacherViewModel teachersById) {
+
+        List<Group> allByTeacher = groupRepository.findAllByTeacher(modelMapper.map(teachersById, Teacher.class));
+
+        return allByTeacher.stream().map(a -> modelMapper.map(a , GroupModel.class)).collect(Collectors.toList());
+
 
     }
 

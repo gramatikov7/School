@@ -1,9 +1,8 @@
 package com.example.restaurantitaly.services;
 
-import com.example.restaurantitaly.entities.Teacher;
-import com.example.restaurantitaly.models.TeacherModel;
-import com.example.restaurantitaly.models.TeacherServiceModel;
-import com.example.restaurantitaly.models.TeacherViewModel;
+import com.example.restaurantitaly.models.teachers.TeacherModel;
+import com.example.restaurantitaly.models.teachers.TeacherServiceModel;
+import com.example.restaurantitaly.models.teachers.TeacherViewModel;
 
 import java.util.List;
 
@@ -24,4 +23,6 @@ public interface TeacherService {
     List<TeacherViewModel> findAllTeachers();
 
     void removeTeacher(Long id);
+
+    TeacherViewModel getTeachersById(Long id);
 }

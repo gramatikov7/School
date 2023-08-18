@@ -1,6 +1,8 @@
-package com.example.restaurantitaly.models;
+package com.example.restaurantitaly.models.groups;
 
-import java.util.List;
+import com.example.restaurantitaly.models.teachers.TeacherServiceModel;
+import com.example.restaurantitaly.models.students.StudentModel;
+
 import java.util.Set;
 
 public class GroupServiceModel {
@@ -8,7 +10,6 @@ public class GroupServiceModel {
     private Long id;
     private String name;
     private String email;
-    private int participants;
     private TeacherServiceModel teacher;
     private Set<StudentModel> student;
 
@@ -36,13 +37,6 @@ public class GroupServiceModel {
         this.email = email;
     }
 
-    public int getParticipants() {
-        return participants;
-    }
-
-    public void setParticipants(int participants) {
-        this.participants = participants;
-    }
 
     public TeacherServiceModel getTeacher() {
         return teacher;

@@ -1,7 +1,12 @@
 package com.example.restaurantitaly.controllers;
 
 import com.example.restaurantitaly.entities.Course;
-import com.example.restaurantitaly.models.*;
+import com.example.restaurantitaly.models.courses.CourseBindingModel;
+import com.example.restaurantitaly.models.courses.CourseModel;
+import com.example.restaurantitaly.models.courses.CourseSearchModel;
+import com.example.restaurantitaly.models.courses.CourseServiceModel;
+import com.example.restaurantitaly.models.students.StudentModel;
+import com.example.restaurantitaly.models.students.StudentsViewModel;
 import com.example.restaurantitaly.services.CourseService;
 import com.example.restaurantitaly.services.StudentService;
 import org.springframework.stereotype.Controller;
@@ -119,6 +124,19 @@ public class CoursesController extends BaseController {
 
 
         return view("courses/search", modelAndView);
+
+    }
+
+    @PostMapping("/search")
+    public ModelAndView courseSearches(@ModelAttribute(name = "students") CourseSearchModel courseSearchModel , ModelAndView modelAndView) {
+
+        Course courseById = courseService.getCourseById(courseSearchModel.getId());
+
+        List<StudentsViewModel> studentByCourseAndAge = studentService.getStudentByCourseAndAge(courseById , courseSearchModel.getAge());
+
+        modelAndView.addObject("students" , studentByCourseAndAge);
+
+        return view("courses/search" , modelAndView);
 
     }
 

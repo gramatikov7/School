@@ -1,18 +1,18 @@
-package com.example.restaurantitaly.models;
+package com.example.restaurantitaly.models.teachers;
 
 import com.example.restaurantitaly.entities.Course;
 import com.example.restaurantitaly.entities.Group;
 
 import java.util.Set;
 
-public class StudentsViewModel {
+public class TeacherModel {
+
     private Long id;
     private String firstName;
     private String secondName;
     private int age;
     private String email;
-    private Set<Group> groups;
-    private Set<Course> courses;
+    private String group;
 
     public Long getId() {
         return id;
@@ -54,19 +54,11 @@ public class StudentsViewModel {
         this.email = email;
     }
 
-    public Set<Group> getGroups() {
-        return groups;
+    public String getGroup() {
+        return group;
     }
 
-    public void setGroups(Set<Group> groups) {
-        this.groups = groups;
-    }
-
-    public Set<Course> getCourses() {
-        return courses;
-    }
-
-    public void setCourses(Set<Course> courses) {
-        this.courses = courses;
+    public void setGroup(String group) {
+        this.group = group;
     }
 }

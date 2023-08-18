@@ -80,6 +80,14 @@
                                                        class="btn btn-danger">View courses</a>
                                                 </div>
                                             </td>
+
+                                            <td class="border-0 align-middle">
+                                                <div class="button-holder">
+                                                    <a th:href="@{/teachers/groups/{id}(id=${s.id})}"
+                                                       class="btn btn-danger">View groups</a>
+                                                </div>
+                                            </td>
+
                                         </tr>
                                     </th:block>
 
@@ -96,13 +104,28 @@
                                 <thead>
                                 <tr>
                                     <td class="border-0 align-middle">
-                                        <a style="color: #EF3159" name="course" th:text="${c}" ></a>
+                                        <a style="color: #EF3159" name="course" th:text="${c.courseType}" ></a>
                                     </td>
                                 </tr>
                                 </thead>
-                                <a href="/students/query">Back</a>
+                                <a class="btn btn-danger" href="/teachers/query">>Back</a>
                             </th:block>
                         </table>
+
+
+                        <table class="table" th:object="${groups}">
+                            <th:block th:each="c: ${groups}">
+                                <thead>
+                                <tr>
+                                    <td class="border-0 align-middle">
+                                        <a style="color: #EF3159" name="course" th:text="${c.name}" ></a>
+                                    </td>
+                                </tr>
+                                </thead>
+                                <a class="btn btn-danger" href="/teachers/query">>Back</a>
+                            </th:block>
+                        </table>
+
                         <!-- End -->
                     </div>
                 </div>

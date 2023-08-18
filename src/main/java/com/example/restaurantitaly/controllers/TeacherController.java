@@ -1,7 +1,13 @@
 package com.example.restaurantitaly.controllers;
 
 import com.example.restaurantitaly.entities.Teacher;
-import com.example.restaurantitaly.models.*;
+import com.example.restaurantitaly.models.courses.CourseServiceModel;
+import com.example.restaurantitaly.models.groups.GroupModel;
+import com.example.restaurantitaly.models.students.StudentModel;
+import com.example.restaurantitaly.models.teachers.TeacherModel;
+import com.example.restaurantitaly.models.teachers.TeacherServiceModel;
+import com.example.restaurantitaly.models.teachers.TeacherViewModel;
+import com.example.restaurantitaly.services.CourseService;
 import com.example.restaurantitaly.services.GroupService;
 import com.example.restaurantitaly.services.TeacherService;
 import org.modelmapper.ModelMapper;
@@ -17,14 +23,16 @@ import java.util.List;
 @RequestMapping("/teachers")
 public class TeacherController extends BaseController {
 
-//    private final GroupService groupService;
     private final TeacherService teacherService;
     private final ModelMapper modelMapper;
+    private final CourseService courseService;
+    private final GroupService groupService;
 
-    public TeacherController(TeacherService teacherService, ModelMapper modelMapper) {
-//        this.groupService = groupService;
+    public TeacherController(TeacherService teacherService, ModelMapper modelMapper, CourseService courseService, GroupService groupService) {
         this.teacherService = teacherService;
         this.modelMapper = modelMapper;
+        this.courseService = courseService;
+        this.groupService = groupService;
     }
 
     @GetMapping("/teachers")
@@ -104,4 +112,35 @@ public class TeacherController extends BaseController {
         return redirect("/teachers/query");
 
     }
+
+
+    @GetMapping("/courses/{id}")
+    public ModelAndView teacherCourses(@PathVariable Long id, ModelAndView modelAndView) {
+
+        TeacherViewModel teachersById = teacherService.getTeachersById(id);
+
+        List<CourseServiceModel> courseByTeacher = courseService.findCourseByTeacher(teachersById);
+
+
+        modelAndView.addObject("courses", courseByTeacher);
+
+        return view("teacher/tquery", modelAndView);
+
+    }
+
+    @GetMapping("/groups/{id}")
+    public ModelAndView teacherGroups(@PathVariable Long id, ModelAndView modelAndView) {
+
+        TeacherViewModel teachersById = teacherService.getTeachersById(id);
+
+
+        List<GroupModel> groupByType = groupService.findGroupByTeacher(teachersById);
+
+
+        modelAndView.addObject("groups", groupByType);
+
+        return view("teacher/tquery", modelAndView);
+
+    }
+
 }

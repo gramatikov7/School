@@ -1,9 +1,8 @@
-package com.example.restaurantitaly.models;
+package com.example.restaurantitaly.models.groups;
 
-public class CourseModel {
-
+public class GroupModel {
     private Long id;
-    private String courseType;
+    private String name;
     private String email;
 
     public Long getId() {
@@ -14,13 +13,14 @@ public class CourseModel {
         this.id = id;
     }
 
-    public String getCourseType() {
-        return courseType;
+    public String getName() {
+        return name;
     }
 
-    public void setCourseType(String courseType) {
-        this.courseType = courseType;
+    public void setName(String name) {
+        this.name = name;
     }
+
 
     public String getEmail() {
         return email;

@@ -22,7 +22,7 @@
                         </div>
                         <!-- Shopping cart table -->
                         <div class="table-responsive">
-                            <form th:action="@{/students/checkout}" th:object="${courses}" th:method="post" >
+                            <form th:action="@{/courses/search}" th:object="${courses}" th:method="post">
                                 <table class="table">
                                     <thead>
                                     <tr>
@@ -31,23 +31,24 @@
                                     </thead>
 
                                     <tbody class="order-items" th:object="${courses}">
-                                    <th:block th:each="s: ${courses}">
+                                    <th:block th:each=" s: ${courses}">
 
-                                                <select class="custom-select form-control" name="courseType" style="background:#FBAF32">
-                                                    <option value="MAIN">MAIN</option>
-                                                    <option value="SECONDARY">SECONDARY</option>
-                                                </select>
+                                        <select class="custom-select form-control" name="id"
+                                                style="background:#FBAF32">
+                                            <option  th:value="${s.id}" th:text="${s.courseType}"></option>
+<!--                                            <option value="2">SECONDARY</option>-->
+                                        </select>
 
                                         <h5>Student age</h5>
 
                                         <input type="number" id="myNumber" name="age"
-                                               value="">
+                                               th:value="${s.age}">
                                         <td class="border-0 align-middle">
                                             <br><br>
                                             <div class="button-holder">
-                                                <a
-                                                        class="btn btn-danger">Search by selected course and student
-                                                    older than this age</a>
+                                                <button type="submit"
+                                                   class="btn btn-danger">Search by selected course and student
+                                                    older than this age</button>
                                             </div>
                                         </td>
 
@@ -67,23 +68,26 @@
                                 <thead>
                                 <tr>
                                     <td class="border-0 align-middle">
-                                        <a style="color: #EF3159" name="course" th:text="${s.firstName}" ></a>
+                                        <a style="color: #EF3159" name="course" th:text="${s.firstName}"></a>
                                     </td>
                                     <td class="border-0 align-middle">
-                                        <a style="color: #EF3159" name="course" th:text="${s.secondName}" ></a>
+                                        <a style="color: #EF3159" name="course" th:text="${s.secondName}"></a>
                                     </td>
                                     <td class="border-0 align-middle">
-                                        <a style="color: #EF3159" name="course" th:text="${s.age}" ></a>
+                                        <a style="color: #EF3159" name="course" th:text="${s.age}"></a>
                                     </td>
 
                                     <td class="border-0 align-middle">
-                                        <a style="color: #EF3159" name="course" th:text="${s.email}" ></a>
+                                        <a style="color: #EF3159" name="course" th:text="${s.email}"></a>
                                     </td>
                                 </tr>
-                                <a class="btn btn-danger" href="/groups/query" >Back</a>
+                                <a class="btn btn-danger" href="/courses/search">Back</a>
                                 </thead>
                             </th:block>
                         </table>
+
+
+
                         <!-- End -->
                     </div>
                 </div>

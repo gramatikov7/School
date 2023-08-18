@@ -1,5 +1,7 @@
-package com.example.restaurantitaly.models;
+package com.example.restaurantitaly.models.courses;
 
+import com.example.restaurantitaly.models.teachers.TeacherServiceModel;
+import com.example.restaurantitaly.models.students.StudentModel;
 import com.example.restaurantitaly.util.CourseType;
 
 import java.util.Set;
@@ -7,7 +9,7 @@ import java.util.Set;
 public class CourseBindingModel {
     private Long id;
     private CourseType courseType;
-    private int participants;
+    private int age;
     private TeacherServiceModel teacher;
     private Set<StudentModel> students;
 
@@ -19,12 +21,12 @@ public class CourseBindingModel {
         this.id = id;
     }
 
-    public int getParticipants() {
-        return participants;
+    public int getAge() {
+        return age;
     }
 
-    public void setParticipants(int participants) {
-        this.participants = participants;
+    public void setAge(int age) {
+        this.age = age;
     }
 
     public TeacherServiceModel getTeacher() {

@@ -1,12 +1,12 @@
 package com.example.restaurantitaly.services;
 
 import com.example.restaurantitaly.entities.Course;
-import com.example.restaurantitaly.entities.Student;
-import com.example.restaurantitaly.models.CourseBindingModel;
-import com.example.restaurantitaly.models.CourseModel;
-import com.example.restaurantitaly.models.CourseServiceModel;
-import com.example.restaurantitaly.models.StudentModel;
-import com.example.restaurantitaly.util.CourseType;
+import com.example.restaurantitaly.models.courses.CourseBindingModel;
+import com.example.restaurantitaly.models.courses.CourseModel;
+import com.example.restaurantitaly.models.courses.CourseSearchModel;
+import com.example.restaurantitaly.models.courses.CourseServiceModel;
+import com.example.restaurantitaly.models.students.StudentModel;
+import com.example.restaurantitaly.models.teachers.TeacherViewModel;
 
 import java.util.List;
 
@@ -31,4 +31,6 @@ public interface CourseService {
     List<CourseBindingModel> findAllCurses();
 
     void removeCourse(Long id);
+
+    List<CourseServiceModel> findCourseByTeacher(TeacherViewModel teachersById);
 }

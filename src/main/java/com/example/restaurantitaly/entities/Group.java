@@ -10,7 +10,6 @@ public class Group extends BaseEntity {
     private String name;
     private Teacher teacher;
     private Set<Student> student;
-    private int participants;
 
     @Column(name = "name", nullable = false, unique = true)
     public String getName() {
@@ -21,16 +20,7 @@ public class Group extends BaseEntity {
         this.name = name;
     }
 
-    @Column(name = "participants", nullable = false)
-    public int getParticipants() {
-        return participants;
-    }
 
-    public void setParticipants(int participants) {
-        this.participants = participants;
-    }
-
-    //    @ManyToMany(mappedBy = "groups")
     @ManyToMany(targetEntity = Student.class, cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "group_student",

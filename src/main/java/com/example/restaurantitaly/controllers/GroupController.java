@@ -1,7 +1,10 @@
 package com.example.restaurantitaly.controllers;
 
 import com.example.restaurantitaly.entities.Group;
-import com.example.restaurantitaly.models.*;
+import com.example.restaurantitaly.models.groups.GroupModel;
+import com.example.restaurantitaly.models.groups.GroupViewModel;
+import com.example.restaurantitaly.models.groups.GruopBindingModel;
+import com.example.restaurantitaly.models.students.StudentModel;
 import com.example.restaurantitaly.services.GroupService;
 import com.example.restaurantitaly.services.StudentService;
 import com.example.restaurantitaly.services.TeacherService;
@@ -19,14 +22,10 @@ import java.util.List;
 public class GroupController extends BaseController {
 
     private final GroupService groupService;
-    private final ModelMapper modelMapper;
-    private final TeacherService teacherService;
     private final StudentService studentService;
 
-    public GroupController(GroupService groupService, ModelMapper modelMapper, TeacherService teacherService, StudentService studentService) {
+    public GroupController(GroupService groupService, StudentService studentService) {
         this.groupService = groupService;
-        this.modelMapper = modelMapper;
-        this.teacherService = teacherService;
         this.studentService = studentService;
     }
 

@@ -1,18 +1,17 @@
-package com.example.restaurantitaly.models;
+package com.example.restaurantitaly.models.teachers;
 
-import com.example.restaurantitaly.entities.Course;
-import com.example.restaurantitaly.entities.Group;
+import com.example.restaurantitaly.models.groups.GroupModel;
 
-import java.util.Set;
+import java.util.List;
 
-public class TeacherModel {
+public class TeacherServiceModel {
 
     private Long id;
     private String firstName;
     private String secondName;
     private int age;
     private String email;
-    private String group;
+    private List<GroupModel> group;
 
     public Long getId() {
         return id;
@@ -54,11 +53,11 @@ public class TeacherModel {
         this.email = email;
     }
 
-    public String getGroup() {
+    public List<GroupModel> getGroup() {
         return group;
     }
 
-    public void setGroup(String group) {
+    public void setGroup(List<GroupModel> group) {
         this.group = group;
     }
 }

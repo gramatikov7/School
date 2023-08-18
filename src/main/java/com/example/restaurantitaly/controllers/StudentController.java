@@ -1,8 +1,10 @@
 package com.example.restaurantitaly.controllers;
 
-import com.example.restaurantitaly.entities.Group;
 import com.example.restaurantitaly.entities.Student;
-import com.example.restaurantitaly.models.*;
+import com.example.restaurantitaly.models.courses.CourseServiceModel;
+import com.example.restaurantitaly.models.groups.GroupServiceModel;
+import com.example.restaurantitaly.models.students.StudentModel;
+import com.example.restaurantitaly.models.students.StudentsViewModel;
 import com.example.restaurantitaly.services.CourseService;
 import com.example.restaurantitaly.services.GroupService;
 import com.example.restaurantitaly.services.StudentService;

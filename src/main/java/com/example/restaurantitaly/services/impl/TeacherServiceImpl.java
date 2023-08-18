@@ -1,17 +1,12 @@
 package com.example.restaurantitaly.services.impl;
 
-import com.example.restaurantitaly.entities.Student;
 import com.example.restaurantitaly.entities.Teacher;
-import com.example.restaurantitaly.models.GroupModel;
-import com.example.restaurantitaly.models.TeacherModel;
-import com.example.restaurantitaly.models.TeacherServiceModel;
-import com.example.restaurantitaly.models.TeacherViewModel;
+import com.example.restaurantitaly.models.teachers.TeacherModel;
+import com.example.restaurantitaly.models.teachers.TeacherServiceModel;
+import com.example.restaurantitaly.models.teachers.TeacherViewModel;
 import com.example.restaurantitaly.repositories.TeacherRepository;
-import com.example.restaurantitaly.services.GroupService;
 import com.example.restaurantitaly.services.TeacherService;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -90,6 +85,12 @@ public class TeacherServiceImpl implements TeacherService {
         Teacher teacher = teacherRepository.findById(id).get();
 
         teacherRepository.delete(teacher);
+    }
+
+    @Override
+    public TeacherViewModel getTeachersById(Long id) {
+        Teacher teacher = teacherRepository.findById(id).get();
+        return modelMapper.map(teacher , TeacherViewModel.class);
     }
 
 

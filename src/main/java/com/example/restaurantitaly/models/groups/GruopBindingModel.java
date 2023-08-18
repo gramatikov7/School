@@ -1,9 +1,8 @@
-package com.example.restaurantitaly.models;
+package com.example.restaurantitaly.models.groups;
 
 public class GruopBindingModel {
     private Long id;
     private String name;
-    private int participants;
 
     public Long getId() {
         return id;
@@ -19,13 +18,5 @@ public class GruopBindingModel {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getParticipants() {
-        return participants;
-    }
-
-    public void setParticipants(int participants) {
-        this.participants = participants;
     }
 }

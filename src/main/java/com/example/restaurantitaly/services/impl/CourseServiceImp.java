@@ -1,20 +1,21 @@
 package com.example.restaurantitaly.services.impl;
 
 import com.example.restaurantitaly.entities.Course;
-import com.example.restaurantitaly.entities.Group;
 import com.example.restaurantitaly.entities.Student;
 import com.example.restaurantitaly.entities.Teacher;
-import com.example.restaurantitaly.models.*;
+import com.example.restaurantitaly.models.courses.CourseBindingModel;
+import com.example.restaurantitaly.models.courses.CourseModel;
+import com.example.restaurantitaly.models.courses.CourseServiceModel;
+import com.example.restaurantitaly.models.students.StudentModel;
+import com.example.restaurantitaly.models.teachers.TeacherModel;
+import com.example.restaurantitaly.models.teachers.TeacherViewModel;
 import com.example.restaurantitaly.repositories.CourseRepository;
 import com.example.restaurantitaly.services.CourseService;
 import com.example.restaurantitaly.services.StudentService;
 import com.example.restaurantitaly.services.TeacherService;
-import com.example.restaurantitaly.util.CourseType;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -60,6 +61,15 @@ public class CourseServiceImp implements CourseService {
         courseRepository.delete(course);
     }
 
+    @Override
+    public List<CourseServiceModel> findCourseByTeacher(TeacherViewModel teachersById) {
+
+        List<Course> allByTeacher = courseRepository.findAllByTeacher(modelMapper.map(teachersById, Teacher.class));
+
+        return allByTeacher.stream().map(a -> modelMapper.map(a, CourseServiceModel.class)).collect(Collectors.toList());
+
+    }
+
 
     @Override
     public void addCourse(CourseModel courseModel) {
@@ -96,21 +106,21 @@ public class CourseServiceImp implements CourseService {
 
         courseById.setStudents(currentStudents);
 
-        courseRepository.save(modelMapper.map(courseById , Course.class));
+        courseRepository.save(modelMapper.map(courseById, Course.class));
 
     }
 
     @Override
     public CourseBindingModel findCourseById(Long id) {
         Course course = this.courseRepository.findById(id).get();
-        return modelMapper.map(course , CourseBindingModel.class);
+        return modelMapper.map(course, CourseBindingModel.class);
     }
 
     @Override
     public List<CourseServiceModel> findCourseByStudent(StudentModel studentById) {
         List<Course> allByStudents = courseRepository.findAllByStudents(modelMapper.map(studentById, Student.class));
 
-      return   allByStudents.stream().map( a -> modelMapper.map(a , CourseServiceModel.class)).collect(Collectors.toList());
+        return allByStudents.stream().map(a -> modelMapper.map(a, CourseServiceModel.class)).collect(Collectors.toList());
     }
 
 }

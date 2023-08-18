@@ -3,15 +3,18 @@ package com.example.restaurantitaly.services.impl;
 import com.example.restaurantitaly.entities.Course;
 import com.example.restaurantitaly.entities.Group;
 import com.example.restaurantitaly.entities.Student;
-import com.example.restaurantitaly.models.StudentModel;
-import com.example.restaurantitaly.models.StudentsViewModel;
+import com.example.restaurantitaly.models.courses.CourseSearchModel;
+import com.example.restaurantitaly.models.students.StudentModel;
+import com.example.restaurantitaly.models.students.StudentsViewModel;
 import com.example.restaurantitaly.repositories.StudentRepository;
+import com.example.restaurantitaly.services.CourseService;
 import com.example.restaurantitaly.services.StudentService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -103,4 +106,13 @@ public class StudentServiceImpl implements StudentService {
 
 
     }
+
+    @Override
+    public List<StudentsViewModel> getStudentByCourseAndAge(Course courseById, int age) {
+        List<Student> allByCoursesAndAgeAfter = studentRepository.findAllByCoursesAndAgeAfter(courseById, age);
+
+      return allByCoursesAndAgeAfter.stream().map(a-> modelMapper.map(a , StudentsViewModel.class)).collect(Collectors.toList());
+
+    }
+
 }
